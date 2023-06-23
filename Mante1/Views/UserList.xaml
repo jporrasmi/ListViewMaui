@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mante1.Views.UserList"
+             xmlns:vm="clr-namespace:Mante1.ViewModels"
+             xmlns:mo="clr-namespace:Mante1.Models"
+             xmlns:te="clr-namespace:Mante1.Views.Templates"
+             Title="UserList">
+    <VerticalStackLayout x:DataType="vm:UserViewModel">
+        <Button Text="List Users" Command="{Binding GetUsersCommand}" />
+        <CollectionView ItemsSource="{Binding Users}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="mo:UserModel">
+                    <te:UserItemTemplate/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </VerticalStackLayout>
+</ContentPage>

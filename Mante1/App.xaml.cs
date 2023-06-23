@@ -1,5 +1,6 @@
 ﻿using Mante1.Services;
 using Mante1.ViewModels;
+using Mante1.Views;
 
 namespace Mante1;
 
@@ -27,6 +28,11 @@ public partial class App : Application
 
 		//ViewModels
 		services.AddTransient<TestViewModel>();
+		services.AddTransient<UserModel>();
+		services.AddTransient<UserViewModel>();
+
+		//Views
+		services.AddSingleton<UserList>();
 
 		return services.BuildServiceProvider();
     }
