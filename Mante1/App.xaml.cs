@@ -28,13 +28,15 @@ public partial class App : Application
 
 		//ViewModels
 		services.AddTransient<TestViewModel>();
-		services.AddTransient<UserModel>();
-		services.AddTransient<UserViewModel>();
+        services.AddTransient<UsersViewModel>();
+        services.AddTransient<UserViewModel>();
+		
+     
+        //Views
+        services.AddSingleton<UserList>();
+        services.AddSingleton<User>();
 
-		//Views
-		services.AddSingleton<UserList>();
-
-		return services.BuildServiceProvider();
+        return services.BuildServiceProvider();
     }
 
 }

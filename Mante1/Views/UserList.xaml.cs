@@ -4,7 +4,7 @@ public partial class UserList : ContentPage
 {
 	public UserList()
 	{
-		BindingContext = App.Current.Services.GetService<UserViewModel>();
+		BindingContext = App.Current.Services.GetService<UsersViewModel>();
 		InitializeComponent();
 	}
 }

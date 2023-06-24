@@ -6,7 +6,7 @@
              xmlns:mo="clr-namespace:Mante1.Models"
              xmlns:te="clr-namespace:Mante1.Views.Templates"
              Title="UserList">
-    <VerticalStackLayout x:DataType="vm:UserViewModel">
+    <VerticalStackLayout x:DataType="vm:UsersViewModel">
         <Button Text="List Users" Command="{Binding GetUsersCommand}" />
         <CollectionView ItemsSource="{Binding Users}">
             <CollectionView.ItemTemplate>

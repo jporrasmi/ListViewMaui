@@ -10,7 +10,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate vi:UserList}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate vi:User}"
+        Route="User" />
 
 </Shell>
