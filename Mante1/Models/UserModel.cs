@@ -12,3 +12,8 @@ namespace Mante1.Models
         public string LastName { get; set; }
     }
 }
+
+//Para que se le aplique a todos los registros.
+public abstract class BaseModels {
+    public int Id { get; set; }
+}

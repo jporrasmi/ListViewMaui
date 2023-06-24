@@ -25,9 +25,10 @@ public partial class App : Application
 	{
 		//Services
 		services.AddSingleton<IFunctions, Functions>();
+        services.AddSingleton<IUserService, UserService>();
 
-		//ViewModels
-		services.AddTransient<TestViewModel>();
+        //ViewModels
+        services.AddTransient<TestViewModel>();
         services.AddTransient<UsersViewModel>();
         services.AddTransient<UserViewModel>();
 		

@@ -10,6 +10,10 @@ namespace Mante1.ViewModels
 {
     public partial class UserViewModel: ObservableValidator 
     {
+        private readonly IUserService _userService;
+        public UserViewModel() { 
+            _userService = App.Current.Services.GetService<IUserService>();
+        }
 
 
         public ObservableCollection<string> Errors { get; set; } = new();
@@ -41,6 +45,8 @@ namespace Mante1.ViewModels
             Errors.Clear();
             GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
             GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
+
+            await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName });
 
         }
 
