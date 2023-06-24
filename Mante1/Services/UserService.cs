@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Mante1.Services
 {
@@ -13,9 +14,23 @@ namespace Mante1.Services
         }
 
 
-        public Task<bool> AddUser(UserModel user)
+        public async Task AddUser(UserModel user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var json = JsonSerializer.Serialize(user);
+                var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+
+                var response = await httpClient.PostAsync("https://webappjpm.azurewebsites.net/api/user/", content);
+                if (response.IsSuccessStatusCode)
+                {
+                      //Se podría hcacer algo si se agregó bien.
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
         }
 
         public Task<bool> DeleteUser(string codUser)
@@ -54,17 +69,23 @@ namespace Mante1.Services
             return default;
         }
 
-        public async Task<bool> UpdateUser(UserModel user)
+        public async Task UpdateUser(UserModel user)
         {
-            
-            var response = await httpClient.GetAsync("");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                //var user = await response.Content.ReadFromJsonAsync<UserModel>();
-                //El content se va a convertir en una cadena y se va a desserializar en una lista.
-                return true;
+                var json = JsonSerializer.Serialize(user);
+                var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+
+                var response = await httpClient.PutAsync("https://webappjpm.azurewebsites.net/api/user/", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    //Se podría hcacer algo si se agregó bien.
+                }
             }
-            return default;
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
         }
     }
 }

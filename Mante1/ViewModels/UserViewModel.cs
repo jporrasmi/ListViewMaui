@@ -47,7 +47,7 @@ namespace Mante1.ViewModels
             GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
             GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
 
-            await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName });
+            await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName, SecondLastName = "", CodUser = LastName+Name.Substring(0,1) });
 
         }
 

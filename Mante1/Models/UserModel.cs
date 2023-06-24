@@ -10,6 +10,9 @@ namespace Mante1.Models
     {
         public string Name { get; set; }
         public string LastName { get; set; }
+        public string SecondLastName { get; set; }
+        public string CodUser { get; set; }
+        public int Id { get; set; }
     }
 }
 
