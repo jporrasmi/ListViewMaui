@@ -7,7 +7,12 @@
              xmlns:te="clr-namespace:Mante1.Views.Templates"
              Title="UserList">
     <VerticalStackLayout x:DataType="vm:UsersViewModel">
-        <Button Text="List Users" Command="{Binding GetUsersCommand}" />
+        <HorizontalStackLayout>
+            <Button Text="List Users" Command="{Binding GetUsersCommand}" Margin="80,10,10,10"/>
+            <Button Text="New User" Command="{Binding AddNewCommand}" Margin="30,10,10,10" />
+        </HorizontalStackLayout>
+     
+        
         <CollectionView ItemsSource="{Binding Users}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="mo:UserModel">

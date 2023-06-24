@@ -17,7 +17,7 @@ namespace Mante1.ViewModels
         public ObservableCollection<UserModel> Users { get; set; } = new ();
 
 
-
+        //Para utilizar en caso de que no haya API.
         //[RelayCommand]
         //public async Task GetUsers()
         //{
@@ -41,7 +41,13 @@ namespace Mante1.ViewModels
             //IsRefreshing = false;
 
         }
-        
+
+
+        [RelayCommand]
+        public void AddNew()
+        {
+            Shell.Current.Navigation.PushAsync(new Views.User(), false);
+        }
 
     }
 }

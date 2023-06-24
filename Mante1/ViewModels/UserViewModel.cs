@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Mante1.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -49,6 +50,7 @@ namespace Mante1.ViewModels
             await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName });
 
         }
+
 
 
     }
