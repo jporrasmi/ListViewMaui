@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 namespace Mante1.ViewModels
 {
 
-    [QueryProperty("Name", "Name")]
-    [QueryProperty("LastName", "LastName")]
-    [QueryProperty("CodUser", "CodUser")]
+    //[QueryProperty("Name", "Name")]
+    //[QueryProperty("LastName", "LastName")]
+    //[QueryProperty("CodUser", "CodUser")]
+    //[QueryProperty("Id", "Id")]
     public partial class UserViewModel: ObservableValidator 
     {
  
@@ -24,13 +25,13 @@ namespace Mante1.ViewModels
 
         public ObservableCollection<string> Errors { get; set; } = new();
 
-        [ObservableProperty]
-        private string codUser;
-   
-        private string  name;
-        [Required(ErrorMessage = "Debe digitar el nombre del usuario")]
+        //[ObservableProperty]
+        //private int id;
+
+        private string name;
+        [Required(ErrorMessage = "You must type a name")]
         [MaxLength(25)]
-        public string  Name
+        public string Name
         {
             get { return name; }
             set { SetProperty(ref name, value, true); }
@@ -38,12 +39,22 @@ namespace Mante1.ViewModels
 
 
         private string lastName;
-        [Required(ErrorMessage = "Debe digitar el nombre del usuario")]
+        [Required(ErrorMessage = "You must type a last name")]
         [MaxLength(25)]
         public string LastName
         {
             get { return lastName; }
             set { SetProperty(ref lastName, value, true); }
+        }
+
+
+        private string secondlastName;
+        [Required(ErrorMessage = "You must type a second last name")]
+        [MaxLength(25)]
+        public string SecondLastName
+        {
+            get { return secondlastName; }
+            set { SetProperty(ref secondlastName, value, true); }
         }
 
         [RelayCommand]
@@ -54,14 +65,14 @@ namespace Mante1.ViewModels
             Errors.Clear();
             GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
             GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
+            GetErrors(nameof(SecondLastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
 
 
+            //if (Id > 0) { 
+            //    await _userService.UpdateUser(new UserModel() { Name = Name, LastName = LastName, CodUser =  LastName + Name.Substring(0, 1) });
+            //}
 
-            if ((CodUser != null) && (CodUser.Length > 0)) { 
-                await _userService.UpdateUser(new UserModel() { Name = Name, LastName = LastName, CodUser = CodUser});
-            }
-
-            await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName, SecondLastName = "", CodUser = LastName+Name.Substring(0,1) });
+            await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName, SecondLastName = SecondLastName, CodUser = LastName+Name.Substring(0,1) });
 
             await Task.Delay(2000);
             await Shell.Current.Navigation.PopToRootAsync();

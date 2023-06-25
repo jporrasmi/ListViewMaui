@@ -33,11 +33,11 @@ namespace Mante1.Services
             }
         }
 
-        public async Task DeleteUser(string codUser)
+        public async Task DeleteUser(int id)
         {
             try
             {
-                var response = await httpClient.DeleteAsync("https://webappjpm.azurewebsites.net/api/user/");
+                var response = await httpClient.DeleteAsync("https://webappjpm.azurewebsites.net/api/user/?Id="+id);
                 if (response.IsSuccessStatusCode)
                 {
                   //El content se va a convertir en una cadena y se va a desserializar en una lista.
@@ -70,7 +70,7 @@ namespace Mante1.Services
 
         public async Task<UserModel> GetByCod(string codUser)
         {
-            var response = await httpClient.GetAsync("http://localhost:52345/Get?" + codUser);
+            var response = await httpClient.GetAsync("hhttps://webappjpm.azurewebsites.net/api/user/?CodUser=" + codUser);
             if (response.IsSuccessStatusCode)
             {
                 var user = await response.Content.ReadFromJsonAsync<UserModel>();

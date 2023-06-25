@@ -13,6 +13,7 @@ namespace Mante1.ViewModels
     [QueryProperty("Name", "Name")]
     [QueryProperty("LastName", "LastName")]
     [QueryProperty("CodUser", "CodUser")]
+    [QueryProperty("Id", "Id")]
     public partial class UserDetailViewModel: ObservableValidator 
     {
  
@@ -25,10 +26,10 @@ namespace Mante1.ViewModels
         public ObservableCollection<string> Errors { get; set; } = new();
 
         [ObservableProperty]
-        private string codUser;
-   
+        private int id;
+
         private string  name;
-        [Required(ErrorMessage = "Debe digitar el nombre del usuario")]
+        [Required(ErrorMessage = "You must type a name")]
         [MaxLength(25)]
         public string  Name
         {
@@ -38,13 +39,24 @@ namespace Mante1.ViewModels
 
 
         private string lastName;
-        [Required(ErrorMessage = "Debe digitar el nombre del usuario")]
+        [Required(ErrorMessage = "You must type a last name")]
         [MaxLength(25)]
         public string LastName
         {
             get { return lastName; }
             set { SetProperty(ref lastName, value, true); }
         }
+
+
+        private string secondlastName;
+        [Required(ErrorMessage = "You must type a second last name")]
+        [MaxLength(25)]
+        public string SecondLastName
+        {
+            get { return secondlastName; }
+            set { SetProperty(ref secondlastName, value, true); }
+        }
+
 
         [RelayCommand]
         public async Task SaveUser()
@@ -54,8 +66,9 @@ namespace Mante1.ViewModels
             Errors.Clear();
             GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
             GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
+            GetErrors(nameof(SecondLastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
 
-            await _userService.UpdateUser(new UserModel() { Name = Name, LastName = LastName, CodUser = CodUser});
+            await _userService.UpdateUser(new UserModel() { Name = Name, LastName = LastName, SecondLastName = SecondLastName, CodUser = LastName + Name.Substring(0, 1), Id=Id });
           
             await Task.Delay(2000);
             await Shell.Current.Navigation.PopToRootAsync();
@@ -66,11 +79,11 @@ namespace Mante1.ViewModels
         {
             ValidateAllProperties();
 
-            Errors.Clear();
-            GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
-            GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
+           //Errors.Clear();
+           // GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
+            //GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
 
-            await _userService.DeleteUser(CodUser);
+            await _userService.DeleteUser(Id);
 
             await Task.Delay(2000);
             await Shell.Current.Navigation.PopToRootAsync();

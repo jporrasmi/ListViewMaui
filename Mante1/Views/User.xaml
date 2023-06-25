@@ -7,6 +7,9 @@
     <VerticalStackLayout BackgroundColor="DarkGray">
         <Entry Text="{Binding Name}" BackgroundColor="White" Placeholder="Type your name" Margin="10, 10, 10, 10"/>
         <Entry Text="{Binding LastName}" BackgroundColor="White" Placeholder="Type your last name" Margin="10, 0, 10, 10"/>
+        <Entry Text="{Binding SecondLastName}" BackgroundColor="White" Placeholder="Type your second last name" Margin="10, 0, 10, 10"/>
+
+
         <Button Text="Save" Command="{Binding SaveUserCommand}"  />
 
         <CollectionView ItemsSource="{Binding Errors}">
