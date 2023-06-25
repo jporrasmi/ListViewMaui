@@ -31,11 +31,13 @@ public partial class App : Application
         services.AddTransient<TestViewModel>();
         services.AddTransient<UsersViewModel>();
         services.AddTransient<UserViewModel>();
+        services.AddTransient<UserDetailViewModel>();
 
         //Views
         services.AddSingleton<UserList>();
         services.AddSingleton<User>();
-   
+        services.AddSingleton<UserDetail>();
+
         return services.BuildServiceProvider();
     }
 
