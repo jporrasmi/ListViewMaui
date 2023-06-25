@@ -60,12 +60,13 @@ namespace Mante1.ViewModels
             if (selectedUser == null)
                 return;
 
-            var data = new Dictionary<string, object>
-            {
-                {"User", selectedUser }
-            };
+            //var data = new Dictionary<string, object>
+            //{
+            //    {"SelectedUser", selectedUser }
+            //};
 
-            await Shell.Current.GoToAsync(nameof(User), true, data);
+
+            await Shell.Current.GoToAsync($"/User?Name={selectedUser.Name}&LastName={selectedUser.LastName}&CodUser={selectedUser.CodUser}", false);
         }
 
     }

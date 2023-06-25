@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace Mante1.ViewModels
 {
-    [QueryProperty(nameof(UserModel), "User")]
+
+    [QueryProperty("Name", "Name")]
+    [QueryProperty("LastName", "LastName")]
+    [QueryProperty("CodUser", "CodUser")]
     public partial class UserViewModel: ObservableValidator 
     {
-        [ObservableProperty]
-        UserModel selectedUser;
-
+ 
         private readonly IUserService _userService;
         public UserViewModel() { 
             _userService = App.Current.Services.GetService<IUserService>();
@@ -23,6 +24,9 @@ namespace Mante1.ViewModels
 
         public ObservableCollection<string> Errors { get; set; } = new();
 
+        [ObservableProperty]
+        private string codUser;
+   
         private string  name;
         [Required(ErrorMessage = "Debe digitar el nombre del usuario")]
         [MaxLength(25)]
@@ -51,7 +55,16 @@ namespace Mante1.ViewModels
             GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
             GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
 
+
+
+            if ((CodUser != null) && (CodUser.Length > 0)) { 
+                await _userService.UpdateUser(new UserModel() { Name = Name, LastName = LastName, CodUser = CodUser});
+            }
+
             await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName, SecondLastName = "", CodUser = LastName+Name.Substring(0,1) });
+
+            await Task.Delay(2000);
+            await Shell.Current.Navigation.PopToRootAsync();
         }
 
                
