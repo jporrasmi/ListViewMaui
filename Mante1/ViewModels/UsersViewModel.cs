@@ -1,6 +1,7 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Mante1.Views;
 using System.Collections.ObjectModel;
 
 namespace Mante1.ViewModels
@@ -13,6 +14,9 @@ namespace Mante1.ViewModels
             _userService = App.Current.Services.GetService<IUserService>();
         }
 
+        //Igual se declara en el model de Products
+        [ObservableProperty]
+        UserModel selectedUser;
 
         public ObservableCollection<UserModel> Users { get; set; } = new ();
 
@@ -47,6 +51,21 @@ namespace Mante1.ViewModels
         public void AddNew()
         {
             Shell.Current.Navigation.PushAsync(new Views.User(), false);
+        }
+
+
+        [RelayCommand]
+        async Task GoToDetails()
+        {
+            if (selectedUser == null)
+                return;
+
+            var data = new Dictionary<string, object>
+            {
+                {"User", selectedUser }
+            };
+
+            await Shell.Current.GoToAsync(nameof(User), true, data);
         }
 
     }

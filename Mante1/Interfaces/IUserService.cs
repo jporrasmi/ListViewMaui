@@ -6,7 +6,7 @@ namespace Mante1.Interfaces
         public Task<List<UserModel>> GetAllUsers();
         public Task<UserModel> GetByCod(string codUser);
         public Task AddUser(UserModel user);
-        public Task<bool> UpdateUser(UserModel user);
-        public Task<bool> DeleteUser(string codUser);
+        public Task UpdateUser(UserModel user);
+        public Task DeleteUser(string codUser);
     }
 }

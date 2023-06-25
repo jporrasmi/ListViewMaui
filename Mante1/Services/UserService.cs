@@ -33,9 +33,20 @@ namespace Mante1.Services
             }
         }
 
-        public Task<bool> DeleteUser(string codUser)
+        public async Task DeleteUser(string codUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var response = await httpClient.DeleteAsync("https://webappjpm.azurewebsites.net/api/user/");
+                if (response.IsSuccessStatusCode)
+                {
+                  //El content se va a convertir en una cadena y se va a desserializar en una lista.
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
         }
 
         public async Task<List<UserModel>> GetAllUsers()

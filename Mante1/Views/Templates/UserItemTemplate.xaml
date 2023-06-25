@@ -3,11 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mante1.Views.Templates.UserItemTemplate"
              xmlns:mo="clr-namespace:Mante1.Models" >
-    <HorizontalStackLayout 
-        x:DataType="mo:UserModel" 
-        Padding="2" 
-        BackgroundColor="Beige">
-        <Label Text="{Binding Name}" />
-        <Label Text="{Binding LastName}" />
-    </HorizontalStackLayout>
+    <Frame Margin="10" Padding="10">
+        <StackLayout BackgroundColor="Beige" Padding="3">
+            <HorizontalStackLayout 
+                x:DataType="mo:UserModel">
+
+                <Label Text="{Binding Name}" FontSize="Body"  FontAttributes="Bold" />
+                <Label Text="  "/>
+                <Label Text="{Binding LastName}" FontSize="Body"  FontAttributes="Bold" />
+                <Label Text="  "/>
+                <Label Text="{Binding SecondLastName}" FontSize="Body"  FontAttributes="Bold" />
+                
+            </HorizontalStackLayout>
+            
+            <Label Text="{Binding CodUser}" FontSize="14"  FontAttributes="Bold"  TextColor="Blue" />
+            
+        </StackLayout>
+    </Frame>
 </ContentView>

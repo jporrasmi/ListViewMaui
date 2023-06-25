@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Mante1"
+              xmlns:models="clr-namespace:Mante1.Models"
              x:Class="Mante1.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -9,6 +10,30 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="UserTemplate" 
+                          x:DataType="models:UserModel">
+                <StackLayout Orientation="Horizontal" Spacing="10" >
+                    <StackLayout Background="blue" HeightRequest="30" WidthRequest="30"></StackLayout>
+                    <StackLayout  Orientation="Vertical" >
+                        <StackLayout  Orientation="Horizontal"  >
+                            <Label Text="{Binding Name}" FontSize="Body"  FontAttributes="Bold"/>
+                            <Label Text="  "/>
+                            <Label Text="{Binding LastName}" FontSize="Body"  FontAttributes="Bold" />
+                            <Label Text="  "/>
+                            <Label Text="{Binding SecondLastName}" FontSize="Body"  FontAttributes="Bold" />
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="{Binding CodUser}" FontSize="14"  FontAttributes="Bold"  TextColor="Blue"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Algo "/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -9,8 +9,12 @@ using System.Threading.Tasks;
 
 namespace Mante1.ViewModels
 {
+    [QueryProperty(nameof(UserModel), "User")]
     public partial class UserViewModel: ObservableValidator 
     {
+        [ObservableProperty]
+        UserModel selectedUser;
+
         private readonly IUserService _userService;
         public UserViewModel() { 
             _userService = App.Current.Services.GetService<IUserService>();
@@ -48,10 +52,9 @@ namespace Mante1.ViewModels
             GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
 
             await _userService.AddUser(new UserModel() { Name = Name, LastName = LastName, SecondLastName = "", CodUser = LastName+Name.Substring(0,1) });
-
         }
 
-
+               
 
     }
 }
