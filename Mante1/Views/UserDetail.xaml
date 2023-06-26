@@ -5,6 +5,9 @@
               xmlns:vm="clr-namespace:Mante1.ViewModels"
              x:DataType="vm:UserDetailViewModel">
     <VerticalStackLayout BackgroundColor="DarkGray">
+        <Image Source="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" HorizontalOptions="Center"
+               HeightRequest="180" WidthRequest="180"/>
+
         <Entry Text="{Binding Name}" BackgroundColor="White" Placeholder="Type your name" Margin="10, 10, 10, 10"/>
         <Entry Text="{Binding LastName}" BackgroundColor="White" Placeholder="Type your last name" Margin="10, 0, 10, 10"/>
         <Entry Text="{Binding SecondLastName}" BackgroundColor="White" Placeholder="Type your second last name" Margin="10, 0, 10, 10"/>

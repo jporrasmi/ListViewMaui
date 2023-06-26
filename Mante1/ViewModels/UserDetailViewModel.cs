@@ -12,6 +12,7 @@ namespace Mante1.ViewModels
 
     [QueryProperty("Name", "Name")]
     [QueryProperty("LastName", "LastName")]
+    [QueryProperty("SecondLastName", "SecondLastName")]
     [QueryProperty("CodUser", "CodUser")]
     [QueryProperty("Id", "Id")]
     public partial class UserDetailViewModel: ObservableValidator 
