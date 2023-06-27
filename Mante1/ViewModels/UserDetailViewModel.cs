@@ -80,10 +80,6 @@ namespace Mante1.ViewModels
         {
             ValidateAllProperties();
 
-           //Errors.Clear();
-           // GetErrors(nameof(Name)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
-            //GetErrors(nameof(LastName)).ToList().ForEach(f => Errors.Add(f.ErrorMessage));
-
             await _userService.DeleteUser(Id);
 
             await Task.Delay(2000);
