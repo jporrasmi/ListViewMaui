@@ -14,8 +14,7 @@ namespace Mante1.ViewModels
             _userService = App.Current.Services.GetService<IUserService>();
         }
 
-        //Igual se declara en el model de Products
-        [ObservableProperty]
+       [ObservableProperty]
         UserModel selectedUser;
 
         public ObservableCollection<UserModel> Users { get; set; } = new ();
